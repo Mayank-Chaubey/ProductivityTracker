@@ -1,0 +1,310 @@
+/* Additional micro-animations, motion, and accessibility enhancements */
+
+/* ===== ACCESSIBILITY: SKIP LINK ===== */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--accent-primary, #2563eb);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 0 0 4px 0;
+    z-index: 10000;
+    font-weight: 600;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 2px solid white;
+}
+
+/* ===== PAGE HEADER (FOR AUTH PAGES) ===== */
+.page-header {
+    background: linear-gradient(135deg, #1f2933 0%, #111827 100%);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1000;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.3), transparent);
+}
+
+.page-header .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-header .brand {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.page-header .brand:hover {
+    color: #60a5fa;
+}
+
+/* ===== FOCUS & INTERACTION STATES ===== */
+:focus-visible {
+    outline: 3px solid var(--accent-primary, #2563eb);
+    outline-offset: 2px;
+}
+
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 2px solid var(--accent-primary, #2563eb);
+    outline-offset: 2px;
+}
+
+/* ===== CARD ANIMATIONS ===== */
+.card {
+    transition: transform 0.28s cubic-bezier(.2,.9,.2,1), box-shadow 0.28s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 50px rgba(2,6,23,0.15);
+}
+
+/* ===== BUTTON ANIMATIONS ===== */
+.btn, button, .activity-cta, .task-cta, .habit-cta {
+    transition: transform 0.12s ease, box-shadow 0.12s, background-color 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover, button:hover, .activity-cta:hover, .task-cta:hover, .habit-cta:hover {
+    transform: translateY(-2px);
+}
+
+.btn:active, button:active, .activity-cta:active, .task-cta:active, .habit-cta:active {
+    transform: scale(0.98);
+}
+
+/* Ripple effect on click */
+.btn::after, button::after, .activity-cta::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+    pointer-events: none;
+}
+
+.btn:active::after, button:active::after, .activity-cta:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+/* ===== LOADING STATES ===== */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.spinner {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 0.8s linear infinite;
+}
+
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* ===== FADE & SLIDE ANIMATIONS ===== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes slideInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.3); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.fade-in { animation: fadeIn 520ms ease forwards; }
+.slide-in-up { animation: slideInUp 400ms ease forwards; }
+.slide-in-down { animation: slideInDown 400ms ease forwards; }
+.scale-in { animation: scaleIn 300ms ease forwards; }
+.bounce-in { animation: bounceIn 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+
+/* ===== TIMER ANIMATIONS ===== */
+.timer-display.timer-active {
+    animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes timerPulse {
+    0%{ transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(37,99,235,0.4); }
+    50%{ transform: scale(1.02); opacity: .95; }
+    100%{ transform: scale(1); opacity: 1; box-shadow: 0 0 0 10px rgba(37,99,235,0); }
+}
+
+.timer-display.timer-active { animation: timerPulse 1.6s ease-in-out infinite; }
+
+/* ===== STAT VALUE UPDATES ===== */
+.kpi-value.updated, .stat-value.updated {
+    animation: slideInDown 400ms ease;
+}
+
+/* ===== ACTIVITY ITEM ANIMATIONS ===== */
+.activity-item {
+    animation: slideInLeft 300ms ease forwards;
+}
+
+.activity-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== MODAL/OVERLAY ANIMATIONS ===== */
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+    from { opacity: 0; transform: scale(0.95) translateY(-20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal { animation: modalFadeIn 300ms ease; }
+.modal-content { animation: modalSlideIn 300ms ease; }
+
+/* ===== SUCCESS/ERROR STATE ANIMATIONS ===== */
+@keyframes successBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.success-state { animation: successBounce 600ms ease; }
+.error-state { animation: errorShake 400ms ease; }
+
+/* ===== PROGRESS BAR ANIMATIONS ===== */
+@keyframes slideProgress {
+    0% { background-position: -100% 0; }
+    100% { background-position: 100% 0; }
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #2563eb 100%);
+    background-size: 200% 100%;
+    animation: slideProgress 1.5s ease infinite;
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+    .card { border: 2px solid currentColor; }
+    button, .btn { border-width: 2px; }
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .card { transform: translateY(0); }
+    .card:hover { transform: translateY(-4px); }
+    .btn:hover { transform: translateY(-1px); }
+}
+
+/* ===== DARK MODE ANIMATIONS ===== */
+body.dark-mode .card:hover {
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Timer pulsing in dark mode */
+body.dark-mode .timer-display.timer-active {
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+}
+
+/* ===== TRANSITION UTILITIES ===== */
+.transition-fast { transition: all 0.15s ease; }
+.transition-normal { transition: all 0.3s ease; }
+.transition-slow { transition: all 0.6s ease; }
+

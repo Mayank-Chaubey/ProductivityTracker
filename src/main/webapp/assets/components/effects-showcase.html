@@ -1,0 +1,191 @@
+<!-- =============================================
+     EFFECTS & ANIMATIONS SHOWCASE COMPONENTS
+     Use these across the dashboard for enhanced UX
+     ============================================== -->
+
+<!-- CAROUSEL / SLIDER COMPONENT -->
+<template id="carousel-template">
+<div class="carousel" style="margin: 30px 0;">
+    <div class="carousel-track">
+        <div class="carousel-slide">
+            <h3>Boost Your Productivity</h3>
+            <p>Track tasks, build habits, and stay focused with intelligent time management.</p>
+        </div>
+        <div class="carousel-slide">
+            <h3>Real-Time Analytics</h3>
+            <p>Visualize your progress with detailed reports and actionable insights.</p>
+        </div>
+        <div class="carousel-slide">
+            <h3>Achieve Your Goals</h3>
+            <p>Turn daily effort into measurable progress and celebrate wins.</p>
+        </div>
+    </div>
+    
+    <button class="carousel-nav prev">‹</button>
+    <button class="carousel-nav next">›</button>
+    
+    <div class="carousel-controls">
+        <span class="carousel-dot active"></span>
+        <span class="carousel-dot"></span>
+        <span class="carousel-dot"></span>
+    </div>
+</div>
+</template>
+
+<!-- ANIMATED STAT CARD -->
+<template id="stat-card-template">
+<div class="stat-card-animated">
+    <div class="stat-card-label">Total Tasks Completed</div>
+    <div class="stat-card-value">147</div>
+    <div style="font-size: 11px; color: #16a34a; margin-top: 8px;">📈 +12% this week</div>
+</div>
+</template>
+
+<!-- PROGRESS SLIDER -->
+<template id="progress-slider-template">
+<div class="slider-progress">
+    <div class="slider-progress-fill"></div>
+</div>
+</template>
+
+<!-- ROLLER / TICKER -->
+<template id="roller-template">
+<div class="roller">
+    <div class="roller-content">42</div>
+</div>
+</template>
+
+<!-- FLIP CARD -->
+<template id="flip-card-template">
+<div class="flip-card">
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <h3 style="margin: 0;">Click to flip</h3>
+            <p style="margin: 10px 0 0 0; font-size: 12px; opacity: 0.9;">Front Side</p>
+        </div>
+        <div class="flip-card-back">
+            <h3 style="margin: 0;">Back Side</h3>
+            <p style="margin: 10px 0 0 0; font-size: 12px; opacity: 0.9;">Interesting info here</p>
+        </div>
+    </div>
+</div>
+</template>
+
+<!-- FLOATING BADGE -->
+<template id="badge-glow-template">
+<span class="badge-glow">🔥 Streak Active</span>
+</template>
+
+<!-- GLOWING NEON TEXT -->
+<template id="neon-text-template">
+<div class="neon-text" style="text-align: center; margin: 20px 0;">
+    ✨ Productivity Unleashed
+</div>
+</template>
+
+<!-- PULSE RING EFFECT -->
+<template id="pulse-ring-template">
+<div class="pulse-ring">
+    <div class="pulse-ring-inner"></div>
+    <div class="pulse-ring-inner"></div>
+    <div class="pulse-ring-inner"></div>
+</div>
+</template>
+
+<!-- GRADIENT BORDER CARD -->
+<template id="gradient-border-template">
+<div class="gradient-border" style="padding: 20px; margin: 20px 0;">
+    <div style="background: white; border-radius: 12px; padding: 20px; text-align: center;">
+        <h3 style="margin: 0; color: #2563eb;">Premium Feature</h3>
+        <p style="margin: 10px 0 0 0; color: #64748b; font-size: 14px;">Unlock advanced analytics and reports</p>
+    </div>
+</div>
+</template>
+
+<!-- SHIMMER LOADER -->
+<template id="shimmer-template">
+<div class="shimmer" style="height: 100px; border-radius: 12px; margin: 20px 0;"></div>
+</template>
+
+<!-- SCROLL REVEAL ITEMS -->
+<template id="scroll-reveal-template">
+<div class="scroll-reveal">
+    <div style="padding: 15px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 10px; margin: 10px 0;">
+        <h4 style="margin: 0; color: #1f2937;">Feature 1</h4>
+        <p style="margin: 8px 0 0 0; font-size: 12px; color: #64748b;">Description goes here</p>
+    </div>
+</div>
+</template>
+
+<!-- STAGGER ANIMATION LIST -->
+<template id="stagger-list-template">
+<div class="stagger-list">
+    <div class="stagger-item" style="padding: 10px; margin: 5px 0; background: #f8fafc; border-radius: 8px;">Item 1</div>
+    <div class="stagger-item" style="padding: 10px; margin: 5px 0; background: #f8fafc; border-radius: 8px;">Item 2</div>
+    <div class="stagger-item" style="padding: 10px; margin: 5px 0; background: #f8fafc; border-radius: 8px;">Item 3</div>
+    <div class="stagger-item" style="padding: 10px; margin: 5px 0; background: #f8fafc; border-radius: 8px;">Item 4</div>
+    <div class="stagger-item" style="padding: 10px; margin: 5px 0; background: #f8fafc; border-radius: 8px;">Item 5</div>
+</div>
+</template>
+
+<!-- GRADIENT WAVE BACKGROUND -->
+<template id="gradient-wave-template">
+<div class="gradient-wave" style="height: 60px; border-radius: 10px; margin: 20px 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 16px;">
+    Wave Animation
+</div>
+</template>
+
+<!-- BOUNCE BUTTON -->
+<template id="bounce-btn-template">
+<button class="btn bounce-in" style="padding: 12px 30px; font-size: 14px; border: none; cursor: pointer;">
+    ✨ Click Me
+</button>
+</template>
+
+<!-- TYPEWRITER TEXT -->
+<template id="typewriter-template">
+<div style="font-size: 20px; font-weight: 600; color: #2563eb; margin: 20px 0;">
+    <span class="typewriter">Welcome to Productivity Tracker!</span>
+</div>
+</template>
+
+<!-- ===== IMPLEMENTATION GUIDE ===== -->
+<script>
+/**
+ * EFFECTS SHOWCASE & USAGE GUIDE
+ * 
+ * To use these components, include them in your HTML:
+ * 
+ * 1. CAROUSEL:
+ *    new Carousel('.carousel');
+ * 
+ * 2. ANIMATED COUNTER:
+ *    new AnimatedCounter('#counter', 500, 1500).start();
+ * 
+ * 3. PROGRESS SLIDER:
+ *    new ProgressSlider('.slider-progress');
+ * 
+ * 4. ROLLER EFFECT:
+ *    new RollerEffect('.roller-content', ['42', '89', '156'], 2000);
+ * 
+ * 5. SCROLL REVEAL:
+ *    new ScrollReveal();
+ * 
+ * 6. PARTICLE GENERATOR:
+ *    document.addEventListener('click', (e) => {
+ *        new ParticleGenerator('body').generateParticles(e.clientX, e.clientY);
+ *    });
+ * 
+ * 7. BOUNCE ANIMATION:
+ *    BounceAnimator.bounce('#myElement');
+ * 
+ * 8. SHAKE ANIMATION (Error):
+ *    ShakeAnimator.shake('#errorBox');
+ * 
+ * 9. FLIP CARDS:
+ *    new FlipCard('.flip-cards');
+ * 
+ * 10. STAGGER ANIMATION:
+ *     new StaggerAnimation('.stagger-list');
+ */
+</script>

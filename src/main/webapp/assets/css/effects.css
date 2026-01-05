@@ -1,0 +1,687 @@
+/* ============================================================
+   ADVANCED ANIMATIONS & EFFECTS
+   - Sliders, Rollers, Carousels, Particle Effects
+   - Engaging micro-interactions
+   - Premium visual experience
+   ============================================================ */
+
+/* ===== SLIDER / CAROUSEL COMPONENT ===== */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    padding: 40px;
+    text-align: center;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: slideInFade 0.6s ease forwards;
+}
+
+.carousel-slide h3 {
+    font-size: 24px;
+    color: #1f2937;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.carousel-slide p {
+    font-size: 14px;
+    color: #64748b;
+    max-width: 400px;
+    line-height: 1.8;
+}
+
+.carousel-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.carousel-dot.active {
+    background: #2563eb;
+    width: 24px;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 8;
+    background: rgba(37, 99, 235, 0.85);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.carousel-nav:hover {
+    background: #2563eb;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.5);
+}
+
+.carousel-nav.prev {
+    left: 15px;
+}
+
+.carousel-nav.next {
+    right: 15px;
+}
+
+@keyframes slideInFade {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ===== ROLLER / TICKER COMPONENT ===== */
+.roller {
+    position: relative;
+    overflow: hidden;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border-radius: 10px;
+    border: 2px solid rgba(37, 99, 235, 0.1);
+    padding: 0 20px;
+}
+
+.roller-content {
+    font-size: 36px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: roll 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes roll {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%) rotateX(90deg);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+    }
+}
+
+/* ===== ANIMATED COUNTER ===== */
+.counter {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2563eb;
+    position: relative;
+    display: inline-block;
+}
+
+.counter::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    animation: expandWidth 0.6s ease forwards 0.3s;
+}
+
+/* ===== SLIDER PROGRESS BAR ===== */
+.slider-progress {
+    position: relative;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.slider-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    width: 0%;
+    animation: slideProgress 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+    position: relative;
+}
+
+.slider-progress-fill::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.6);
+}
+
+@keyframes slideProgress {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* ===== ANIMATED STAT CARDS ===== */
+.stat-card-animated {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.stat-card-animated::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    transition: all 0.6s ease;
+    pointer-events: none;
+}
+
+.stat-card-animated:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(37, 99, 235, 0.15);
+    border-color: rgba(37, 99, 235, 0.3);
+}
+
+.stat-card-animated:hover::before {
+    top: 0;
+    right: 0;
+}
+
+.stat-card-value {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 12px 0;
+}
+
+.stat-card-label {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ===== GLOWING BADGE ===== */
+.badge-glow {
+    display: inline-block;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    color: white;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    position: relative;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(37, 99, 235, 0.8);
+    }
+}
+
+/* ===== FLOATING ANIMATION ===== */
+.float-animation {
+    animation: floatUp 3s ease-in-out infinite;
+}
+
+@keyframes floatUp {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* ===== PARTICLE EFFECT ===== */
+.particle {
+    position: absolute;
+    pointer-events: none;
+}
+
+.particle-dot {
+    width: 4px;
+    height: 4px;
+    background: #2563eb;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: particle-float 3s ease-in-out forwards;
+}
+
+@keyframes particle-float {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx, 0), var(--ty, 0)) scale(0);
+    }
+}
+
+/* ===== SHIMMER EFFECT ===== */
+.shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer-move 2s infinite;
+}
+
+@keyframes shimmer-move {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* ===== PULSE RING EFFECT ===== */
+.pulse-ring {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+}
+
+.pulse-ring-inner {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    animation: pulse-grow 1.5s ease-out infinite;
+}
+
+.pulse-ring-inner:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.pulse-ring-inner:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.pulse-ring-inner:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes pulse-grow {
+    0% {
+        opacity: 1;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+}
+
+/* ===== SCROLL REVEAL ANIMATION ===== */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: scroll-reveal-up 0.8s ease forwards;
+}
+
+.scroll-reveal.delayed-1 {
+    animation-delay: 0.1s;
+}
+
+.scroll-reveal.delayed-2 {
+    animation-delay: 0.2s;
+}
+
+.scroll-reveal.delayed-3 {
+    animation-delay: 0.3s;
+}
+
+.scroll-reveal.delayed-4 {
+    animation-delay: 0.4s;
+}
+
+@keyframes scroll-reveal-up {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== FLIP CARD ANIMATION ===== */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 200px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.flip-card-front {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    color: white;
+}
+
+.flip-card-back {
+    background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+/* ===== NEON GLOW TEXT ===== */
+.neon-text {
+    font-weight: 700;
+    font-size: 24px;
+    color: #2563eb;
+    text-shadow: 0 0 10px #2563eb, 0 0 20px #1e40af;
+    animation: neon-glow 2s ease-in-out infinite;
+}
+
+@keyframes neon-glow {
+    0%, 100% {
+        text-shadow: 0 0 10px #2563eb, 0 0 20px #1e40af;
+    }
+    50% {
+        text-shadow: 0 0 20px #2563eb, 0 0 30px #1e40af, 0 0 40px #3b82f6;
+    }
+}
+
+/* ===== GRADIENT WAVE ANIMATION ===== */
+.gradient-wave {
+    background: linear-gradient(90deg, #2563eb, #3b82f6, #2563eb);
+    background-size: 200% 100%;
+    animation: wave 3s ease infinite;
+}
+
+@keyframes wave {
+    0% {
+        background-position: 0% center;
+    }
+    50% {
+        background-position: 100% center;
+    }
+    100% {
+        background-position: 0% center;
+    }
+}
+
+/* ===== BOUNCE IN ANIMATION ===== */
+.bounce-in {
+    animation: bounceInScale 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes bounceInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===== STAGGERED LIST ANIMATION ===== */
+.stagger-item {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.stagger-item.show {
+    animation: stagger-in 0.5s ease forwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0s; }
+.stagger-item:nth-child(2) { animation-delay: 0.1s; }
+.stagger-item:nth-child(3) { animation-delay: 0.2s; }
+.stagger-item:nth-child(4) { animation-delay: 0.3s; }
+.stagger-item:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes stagger-in {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ===== GRADIENT BORDER ANIMATION ===== */
+.gradient-border {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    padding: 2px;
+    overflow: hidden;
+}
+
+.gradient-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #2563eb, #3b82f6, #2563eb);
+    background-size: 200% 200%;
+    animation: gradient-rotate 3s linear infinite;
+    z-index: -1;
+    border-radius: 12px;
+}
+
+@keyframes gradient-rotate {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== SHAKE ANIMATION (Error/Alert) ===== */
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* ===== TYPEWRITER EFFECT ===== */
+.typewriter {
+    overflow: hidden;
+    border-right: 3px solid #2563eb;
+    white-space: nowrap;
+    animation: typewriter 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-right-color: #2563eb; }
+    50% { border-right-color: transparent; }
+}
+
+/* ===== MOTION SAFE FALLBACKS ===== */
+@media (prefers-reduced-motion: reduce) {
+    .carousel-track,
+    .roller-content,
+    .slider-progress-fill,
+    .stat-card-animated,
+    .pulse-ring-inner,
+    .scroll-reveal,
+    .flip-card-inner,
+    .gradient-wave,
+    .bounce-in,
+    .stagger-item.show,
+    .typewriter {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .carousel-dot.active {
+        transition: none;
+    }
+
+    .stat-card-animated:hover {
+        transform: none;
+    }
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .carousel-slide {
+        padding: 30px;
+        min-height: 250px;
+    }
+
+    .carousel-slide h3 {
+        font-size: 20px;
+    }
+
+    .carousel-nav {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+
+    .roller-content {
+        font-size: 28px;
+    }
+
+    .counter {
+        font-size: 24px;
+    }
+
+    .neon-text {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-slide {
+        padding: 20px;
+        min-height: 200px;
+    }
+
+    .carousel-slide h3 {
+        font-size: 18px;
+    }
+
+    .carousel-nav {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .roller-content {
+        font-size: 24px;
+    }
+
+    .stat-card-value {
+        font-size: 22px;
+    }
+
+    .counter {
+        font-size: 20px;
+    }
+}

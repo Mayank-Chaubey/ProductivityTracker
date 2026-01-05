@@ -1,0 +1,10 @@
+/* Timer styles */
+.timer-card { padding: 18px; margin-top: 18px; }
+.timer-area { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.timer-display { font-size: 2.25rem; font-weight: 600; color: #2563eb; padding: 10px 18px; border-radius: 8px; background: rgba(37,99,235,0.06); }
+.timer-display.timer-active { box-shadow: 0 6px 18px rgba(37,99,235,0.12); transform: translateY(-2px); }
+.timer-controls { display:flex; gap:8px; }
+.timer-note { font-size:0.9rem; color:#6b7280; }
+.btn { padding: 8px 12px; border-radius:6px; border:1px solid rgba(0,0,0,0.06); background: #fff; cursor:pointer; }
+.btn-primary { background: #2563eb; color:#fff; border-color: #1e40af; }
+.btn-danger { background: #dc2626; color:#fff; border-color: #b91c1c; }
