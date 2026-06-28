@@ -1,0 +1,5 @@
+digraph performance {
+ rankdir=LR;
+ node [shape=record, style=filled, fillcolor=lightgrey, fontname=Helvetica, fontsize=10];
+ metrics [label="{Performance Metrics Achievement|Page Load Time: target 3s / actual 1.2s|Time to Interactive: target 5s / actual 2.8s|LCP: target 2.5s / actual 1.8s|CLS: target 0.1 / actual 0.05|FID: target 100ms / actual 45ms}"];
+}

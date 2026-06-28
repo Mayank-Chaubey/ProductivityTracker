@@ -7,6 +7,9 @@ yarn-error.log*
 # Build outputs
 dist/
 build/
+target/
+*.class
+*.war
 *.log
 
 # Environment files
@@ -28,7 +31,12 @@ Thumbs.db
 *.tmp
 *.temp
 .cache/
+src/main/tmp/
+src/main/output/
+
+# Generated modernization/tooling logs
+.github/java-upgrade/
+.github/modernize/
 
 # Sensitive files (auto-detected)
 build
-

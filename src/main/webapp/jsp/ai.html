@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puter.js Codex Demo</title>
+    <!-- 1. Import Puter.js Library -->
+    <script src="https://js.puter.com/v2/"></script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        #output { background: #f4f4f4; padding: 15px; border-radius: 8px; white-space: pre-wrap; }
+        button { padding: 10px 20px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <h1>AI Code Generator</h1>
+    <button onclick="generateCode()">Generate Python Script</button>
+    
+    <h3>Output:</h3>
+    <div id="output">Click the button to see the magic...</div>
+
+    <script>
+        async function generateCode() {
+    const outputDiv = document.getElementById('output');
+    outputDiv.innerText = "Processing with Codex Max (Deep Reasoning)...";
+
+    try {
+        // Model change kiya gaya hai: openai/gpt-5.1-codex-max
+        const response = await puter.ai.chat(
+            "Write a robust Python script for an enterprise-level binary search with full error handling and unit tests.",
+            { 
+                model: "openai/gpt-5.1-codex-max" 
+            }
+        );
+
+        // Result display karne ke liye
+        outputDiv.innerText = response;
+    } catch (error) {
+        outputDiv.innerText = "Error: " + error.message;
+    }
+}
+    </script>
+</body>
+</html>

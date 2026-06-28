@@ -1,0 +1,11 @@
+digraph er {
+ rankdir=TB;
+ node [shape=record, fontsize=10, fontname=Helvetica];
+ users [label="{USERS|id PK\lname\lemail\lpassword_hash\lemail_verified\lcreated_at\l}"];
+ tasks [label="{TASKS|id PK\luser_id FK\lname\ldescription\ltinyint priority\lstatus\ldue_date\l}"];
+ habits [label="{HABITS|id PK\luser_id FK\lhabit_name\lfrequency\lstreak\l}"];
+ activities [label="{ACTIVITIES|id PK\luser_id FK\lactivity_name\lcategory\lduration\lmood_score\l}"];
+ users -> tasks [arrowhead=none label="owns"];
+ users -> habits [arrowhead=none label="owns"];
+ users -> activities [arrowhead=none label="logs"];
+}

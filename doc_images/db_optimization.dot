@@ -1,0 +1,9 @@
+digraph optimization {
+ rankdir=LR;
+ node [shape=folder, style=filled, fillcolor=lightcyan, fontname=Helvetica, fontsize=10];
+ tasks [label="tasks"];
+ subtasks [label="subtasks"];
+ join [shape=note, style=filled, fillcolor=lightyellow, label="JOIN on task_id"];
+ tasks -> join;
+ subtasks -> join;
+}
