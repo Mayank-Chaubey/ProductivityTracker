@@ -35,6 +35,7 @@ src/main/tmp/
 src/main/output/
 
 # Local project/report documents not published to GitHub
+README.md
 PRODUCTION.md
 ProductivityTracker_Comprehensive_Pr.md
 Professional_Index.md
@@ -47,6 +48,11 @@ ProjectSubmissionReport_1101Pages.docx
 ProjectSubmissionReport_110Pages.docx
 ProjectSubmissionReport_110Pages.md
 ProjectSubmissionReport_Formatted.md
+REFERENCES.docx
+REFERENCES.md
+REFERENCES2.docx
+REFERENCES_AND_BIBLIOGRAPHY.md
+REFERENCES_LINKS_ONLY.md
 
 # Generated modernization/tooling logs
 .github/java-upgrade/
