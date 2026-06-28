@@ -34,6 +34,20 @@ Thumbs.db
 src/main/tmp/
 src/main/output/
 
+# Local project/report documents not published to GitHub
+PRODUCTION.md
+ProductivityTracker_Comprehensive_Pr.md
+Professional_Index.md
+ProjectIndex.docx
+ProjectReport_1.docx
+ProjectReport_2.docx
+ProjectSubmissionReport.docx
+ProjectSubmissionReport.md
+ProjectSubmissionReport_1101Pages.docx
+ProjectSubmissionReport_110Pages.docx
+ProjectSubmissionReport_110Pages.md
+ProjectSubmissionReport_Formatted.md
+
 # Generated modernization/tooling logs
 .github/java-upgrade/
 .github/modernize/

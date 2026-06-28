@@ -154,10 +154,8 @@ export DB_PASSWORD="root@123"
 ## 📚 Documentation
 
 - 📘 [Database Configuration](DATABASE_CONFIG.md)
-- 🚢 [Production Notes](PRODUCTION.md)
 - 🧪 [Webapp Testing Notes](src/main/webapp/TESTING.md)
 - ⚡ [Quick Start Guide](src/main/webapp/QUICKSTART.md)
-- 🧾 [Project Submission Report](ProjectSubmissionReport.md)
 - 📖 [References](REFERENCES.md)
 
 ## 🚦 CI
