@@ -35,7 +35,6 @@ src/main/tmp/
 src/main/output/
 
 # Local project/report documents not published to GitHub
-README.md
 PRODUCTION.md
 ProductivityTracker_Comprehensive_Pr.md
 Professional_Index.md
