@@ -1,0 +1,15 @@
+```mermaid
+graph LR
+    User[External User]
+    Browser[Web Browser]
+    System[ProductivityTracker System]
+    Database[ProductivityTracker Database]
+    Email[Email Service]
+
+    User -->|Uses application| Browser
+    Browser -->|Sends requests| System
+    System -->|Reads / writes user, task, habit data| Database
+    System -->|Sends verification and alerts| Email
+    Email -->|Delivers messages| User
+
+```

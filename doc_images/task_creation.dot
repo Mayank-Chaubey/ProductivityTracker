@@ -1,0 +1,17 @@
+digraph taskflow {
+ rankdir=LR;
+ node [shape=box, style=filled, fillcolor=lightgoldenrod, fontname=Helvetica, fontsize=10];
+ User [label="User"];
+ Form [label="Task Form"];
+ Validate [label="Validate Input"];
+ Save [label="Save Task"];
+ Reminder [label="Schedule Reminder"];
+ Confirm [label="Confirmation"];
+ User -> Form [label="Click Create Task"];
+ Form -> Validate [label="Submit details"];
+ Validate -> Save [label="Valid input"];
+ Validate -> Form [label="Invalid input"];
+ Save -> Reminder;
+ Save -> Confirm;
+ Confirm -> User [label="Success feedback"];
+}

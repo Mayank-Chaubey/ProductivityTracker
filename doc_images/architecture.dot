@@ -1,0 +1,20 @@
+digraph architecture {
+ rankdir=LR;
+ node [shape=box, style=filled, fillcolor=lightblue, fontname=Helvetica, fontsize=10];
+ User [label="External User"];
+ Browser [label="Browser
+HTML5/CSS3/JS
+PWA"];
+ Server [label="Jetty App Server
+Jakarta EE 6.1
+Java 21"];
+ Database [label="MySQL Database
+Normalized Schema
+InnoDB"];
+ Email [label="Email Service"];
+ User -> Browser [label="Access"];
+ Browser -> Server [label="HTTP/HTTPS"];
+ Server -> Database [label="JDBC"];
+ Server -> Email [label="Send alerts"];
+ Email -> User [label="Deliver messages"];
+}

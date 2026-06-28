@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ProductivityTracker</title>
+  <meta name="description" content="A Java web application for tracking tasks, habits, goals, focus sessions, reminders, journals, and productivity reports.">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --surface-strong: #eef4ff;
+      --text: #111827;
+      --muted: #5b6472;
+      --line: #dbe3ef;
+      --blue: #2563eb;
+      --green: #0f8a5f;
+      --amber: #b7791f;
+      --shadow: 0 18px 50px rgba(17, 24, 39, 0.12);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(219, 227, 239, 0.85);
+      background: rgba(246, 248, 251, 0.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .topbar-inner {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.28);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    nav a:hover {
+      color: var(--blue);
+    }
+
+    .hero {
+      padding: 64px 0 32px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.35fr);
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      margin: 0 0 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(40px, 7vw, 78px);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      margin: 22px 0 0;
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 8px 22px rgba(17, 24, 39, 0.08);
+    }
+
+    .button.primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    .hero-shot {
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 34px 0 0;
+    }
+
+    .stat {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    section {
+      padding: 56px 0;
+    }
+
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .feature {
+      min-height: 170px;
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .feature .icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--surface-strong);
+      margin-bottom: 14px;
+      font-size: 20px;
+    }
+
+    .feature h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .feature p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .screen {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 10px 28px rgba(17, 24, 39, 0.08);
+    }
+
+    .screen figcaption {
+      margin: 0;
+      padding: 12px 14px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .diagram-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .diagram {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 10px 28px rgba(17, 24, 39, 0.08);
+    }
+
+    .stack {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .pill {
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      font-weight: 800;
+      color: var(--text);
+      text-align: center;
+    }
+
+    .setup {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .steps {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .steps li {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .steps strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    code,
+    pre {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    pre {
+      margin: 0;
+      overflow-x: auto;
+      border-radius: var(--radius);
+      background: #101827;
+      color: #e5edf9;
+      padding: 18px;
+      line-height: 1.7;
+      border: 1px solid #22304a;
+    }
+
+    .notice {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid #f0d38a;
+      background: #fff8e6;
+      color: #6f4b00;
+      font-weight: 650;
+    }
+
+    footer {
+      padding: 32px 0 44px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .diagram-grid,
+      .setup {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        gap: 24px;
+      }
+
+      .stats,
+      .feature-grid,
+      .stack {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      nav {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .hero {
+        padding-top: 38px;
+      }
+
+      .stats,
+      .feature-grid,
+      .gallery,
+      .stack {
+        grid-template-columns: 1fr;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="#top" aria-label="ProductivityTracker home">
+        <span class="brand-mark">PT</span>
+        <span>ProductivityTracker</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#features">Features</a>
+        <a href="#screens">Screens</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#setup">Setup</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Java Servlet Productivity Platform</p>
+            <h1>Plan, track, focus, and measure progress.</h1>
+            <p class="hero-copy">
+              ProductivityTracker is a Java web application for tasks, habits, goals, reminders, focus sessions,
+              journal entries, achievements, analytics, and reports.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="https://github.com/Mayank-Chaubey/ProductivityTracker">View Repository</a>
+              <a class="button" href="#setup">Run Locally</a>
+            </div>
+          </div>
+          <div class="hero-shot">
+            <img src="doc_images/ui-screens/dashboard-page.png" alt="ProductivityTracker dashboard showing productivity stats and charts">
+          </div>
+        </div>
+
+        <div class="stats" aria-label="Project highlights">
+          <div class="stat">
+            <strong>Java 17</strong>
+            <span>Servlet and JSP app</span>
+          </div>
+          <div class="stat">
+            <strong>MySQL</strong>
+            <span>JDBC persistence</span>
+          </div>
+          <div class="stat">
+            <strong>Docker</strong>
+            <span>Compose setup</span>
+          </div>
+          <div class="stat">
+            <strong>CI</strong>
+            <span>GitHub Actions</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Features built for daily productivity workflows.</h2>
+          <p>Modules cover planning, tracking, focus, reporting, and account management.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="icon">✅</div>
+            <h3>Task Management</h3>
+            <p>Create, prioritize, update, complete, and review tasks from focused JSP screens.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">🔥</div>
+            <h3>Habit Streaks</h3>
+            <p>Track consistency, completions, current streaks, best streaks, and progress history.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">🎯</div>
+            <h3>Goals and Focus</h3>
+            <p>Use goals and Pomodoro sessions to connect long-term intent with daily execution.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">📅</div>
+            <h3>Calendar and Reminders</h3>
+            <p>Review productivity events by date and schedule reminders around important work.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">📊</div>
+            <h3>Reports</h3>
+            <p>Analyze task completion, activity trends, habit performance, and productivity metrics.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">🔐</div>
+            <h3>Security Utilities</h3>
+            <p>Includes authentication screens, CSRF helpers, filters, validation, and session utilities.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="screens">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Application screens.</h2>
+          <p>Static previews from the Java web application.</p>
+        </div>
+        <div class="gallery">
+          <figure class="screen">
+            <img src="doc_images/ui-screens/tasks-page.png" alt="Tasks page">
+            <figcaption>Tasks</figcaption>
+          </figure>
+          <figure class="screen">
+            <img src="doc_images/ui-screens/habits-page.png" alt="Habits page">
+            <figcaption>Habits</figcaption>
+          </figure>
+          <figure class="screen">
+            <img src="doc_images/ui-screens/focus-page.png" alt="Focus page">
+            <figcaption>Focus</figcaption>
+          </figure>
+          <figure class="screen">
+            <img src="doc_images/ui-screens/reports-page.png" alt="Reports page">
+            <figcaption>Reports</figcaption>
+          </figure>
+          <figure class="screen">
+            <img src="doc_images/ui-screens/profile-page.png" alt="Profile page">
+            <figcaption>Profile</figcaption>
+          </figure>
+          <figure class="screen">
+            <img src="doc_images/ui-screens/login-page.png" alt="Login page">
+            <figcaption>Login</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Architecture and data model.</h2>
+          <p>The project follows a Servlet controller, service, DAO, model, and JSP view structure.</p>
+        </div>
+        <div class="diagram-grid">
+          <div class="diagram">
+            <img src="doc_images/architecture.png" alt="ProductivityTracker architecture diagram">
+          </div>
+          <div class="diagram">
+            <img src="doc_images/er_diagram.png" alt="ProductivityTracker database ER diagram">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="section-head">
+          <h2>Technology stack.</h2>
+          <p>Core runtime and tooling used by the project.</p>
+        </div>
+        <div class="stack" aria-label="Technology stack">
+          <div class="pill">Java 17</div>
+          <div class="pill">Jakarta Servlet</div>
+          <div class="pill">JSP</div>
+          <div class="pill">Maven</div>
+          <div class="pill">MySQL</div>
+          <div class="pill">JDBC</div>
+          <div class="pill">Docker</div>
+          <div class="pill">GitHub Actions</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="setup">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Run the full Java app locally.</h2>
+          <p>GitHub Pages hosts this static showcase. The live Servlet app needs a Java runtime and database.</p>
+        </div>
+        <div class="setup">
+          <ol class="steps">
+            <li>
+              <strong>1. Clone the repository</strong>
+              Use SSH after adding your GitHub key.
+            </li>
+            <li>
+              <strong>2. Start Docker Compose</strong>
+              MySQL is initialized with the schema and demo data.
+            </li>
+            <li>
+              <strong>3. Open the local app</strong>
+              Visit the Tomcat route exposed by Docker.
+            </li>
+          </ol>
+          <pre><code>git clone git@github.com:Mayank-Chaubey/ProductivityTracker.git
+cd ProductivityTracker
+docker compose up --build
+
+# App URL:
+# http://localhost:8081/ProductivityTracker</code></pre>
+        </div>
+        <div class="notice">
+          GitHub Pages is static hosting. JSP pages, servlets, authentication, JDBC, and MySQL run only in a Java hosting environment.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <strong>ProductivityTracker</strong> by Mayank Chaubey. Repository:
+      <a href="https://github.com/Mayank-Chaubey/ProductivityTracker">github.com/Mayank-Chaubey/ProductivityTracker</a>
+    </div>
+  </footer>
+</body>
+</html>

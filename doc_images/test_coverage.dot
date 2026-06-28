@@ -1,0 +1,8 @@
+digraph coverage {
+ rankdir=LR;
+ node [shape=box, style=filled, fillcolor=lightskyblue, fontname=Helvetica, fontsize=10];
+ Unit [label="Unit Tests\n60%"];
+ Integration [label="Integration Tests\n20%"];
+ E2E [label="E2E Tests\n10%"];
+ Smoke [label="Smoke Tests\n10%"];
+}
